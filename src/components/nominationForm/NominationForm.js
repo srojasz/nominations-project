@@ -37,7 +37,8 @@ const NominationForm = () => {
     const errors = printErrors(dataForm);
     setErrors(errors); 
 
-    //Crear función para comprobar si el email ya ha sido referenciado.
+    // Crear función para comprobar si el email ya ha sido referenciado.
+    // Enviar por POST dataToPost
     const dataToPost = {
       email: dataForm.email,
       description: dataForm.desc,
