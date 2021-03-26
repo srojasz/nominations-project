@@ -1,0 +1,14 @@
+.dashboard {
+    width: 65%;
+    padding: 20px 40px;
+
+    &__header {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__field {
+        font-weight: 700;
+        width: 20%;
+    }
+}

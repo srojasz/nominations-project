@@ -1,10 +1,8 @@
 import axios from "axios";
 
 export const fetchNominations = async () => {
-    const url = "/nominations";
-    const response = await axios.get(url);
-    console.log(response);
+    const url = "http://localhost:3000/nominations";
+    const {data} = await axios.get(url);
 
-    return response;
-    
+    return data;    
 }
