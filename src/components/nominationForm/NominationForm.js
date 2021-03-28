@@ -22,6 +22,8 @@ const NominationForm = ({emails}) => {
     desc: "",
   });
 
+  const [nominationCompleted, setNominationCompleted] = useState(false);
+
   const onChangeFormData = (ev) => {
     const { value } = ev.target;
     const inputName = ev.target.name;
@@ -31,32 +33,37 @@ const NominationForm = ({emails}) => {
         }
     );
     setErrors({});
+    setNominationCompleted(false);
   };
-
-  console.log(errors)
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const errors = printErrors(dataForm);
     setErrors(errors);
-    if (!emails.find(email => email === dataForm.email)) {
-        const dataToPost = {
-            email : dataForm.email,
-            description : dataForm.description,
-            score : {
-                involvement : parseInt(dataForm.involvement),
-                talent : parseInt(dataForm.talent)
+
+    if (errors.email === '' && errors.desc === '') {
+        console.log('no hay errores')
+        if (!emails.find(email => email === dataForm.email)) {
+            const dataToPost = {
+                email : dataForm.email,
+                description : dataForm.description,
+                score : {
+                    involvement : parseInt(dataForm.involvement),
+                    talent : parseInt(dataForm.talent)
+                }
             }
-        }
      
         // addNewNomination(dataToPost).then(newNomination => {
         //     console.log(newNomination, 'new Nomination objetc')
         // })
-        
-    } else {
-        alert("No podemos procesar tu petició porque el email ya ha sido referenciado. Por favor, revisa tu email");
-        // Send email to warn user and referred that emails has alredy been nominated.
-    }   
+
+        setNominationCompleted(true);        
+        } else {
+            alert("We can't add your nomination, that email has alredy been nominated. Please, check your email!");
+            // Send email to warn user and referred that emails has alredy been nominated.
+        }
+
+    }       
   }
  
 
@@ -95,6 +102,7 @@ const NominationForm = ({emails}) => {
         onChangeFormData={onChangeFormData}
       />
       <SubmitInput value="Send"/>
+      {nominationCompleted ? <p className="nomination-completed">Your nomination has been sent!</p> : null}
     </form>
   );
 }
