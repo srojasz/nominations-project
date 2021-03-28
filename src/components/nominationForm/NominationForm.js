@@ -9,7 +9,7 @@ import "./nominationForm.scss";
 import { printErrors } from "../../utils/formLogic";
 import { addNewNomination } from "../../utils/addNewNomination";
 
-const NominationForm = ({emails}) => {
+const NominationForm = ({emails, addNominationToList}) => {
   const [dataForm, setDataForm] = useState({
     email: "",
     desc: "",
@@ -52,6 +52,28 @@ const NominationForm = ({emails}) => {
                     talent : parseInt(dataForm.talent)
                 }
             }
+
+            const newNomination = {
+                message: "Request message response",
+                data: [
+                    {
+                      id: "8ssff55c-11f5-4b3c-8596-3d9831a8934d",
+                      email: dataForm.email,
+                      description: dataForm.desc,
+                      score: {
+                        involvement: parseInt(dataForm.involvement),
+                        talent: parseInt(dataForm.talent)
+                      },
+                      referrer: "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+                      dateReferred: "2021-03-20T08:40:58.200Z",
+                      status: dataForm.talent >= 8 ? 'PENDING' : 'REJECTED'
+                    }
+                  ]
+                };
+
+                addNominationToList(newNomination);
+
+
      
         // addNewNomination(dataToPost).then(newNomination => {
         //     console.log(newNomination, 'new Nomination objetc')
@@ -85,7 +107,7 @@ const NominationForm = ({emails}) => {
         onChangeFormData={onChangeFormData}
         name="desc"
         placeholder="Descripción"
-        type=""
+        type="text"
       />
       <RangeInput
         dataForm={dataForm}

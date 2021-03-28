@@ -13,8 +13,8 @@ const Dashboard = ({nominations, fieldsDashboard}) => {
          
         </div>
    {nominations.map(({data, key}) => {
-           return <NominationRow info={data} key={key} />
-       })
+        return <NominationRow info={data} key={key} />
+   })
    }
    </div>
 }

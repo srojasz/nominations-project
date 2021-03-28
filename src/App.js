@@ -18,11 +18,13 @@ function App() {
         })         
     }, []);
 
+    const addNominationToList = (newNomination) => setNominationList([...nominationList, newNomination]);
+
     const fieldsDashboard = ['Email', 'Description', 'Score', 'Status', 'Date'];
 
     return (
         <div className="app-container">
-          <NominationForm emails={emailsNominated}/>
+          <NominationForm emails={emailsNominated} addNominationToList={addNominationToList}/>
           <Dashboard nominations={nominationList} fieldsDashboard={fieldsDashboard}/>
         </div>
     );
