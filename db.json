@@ -51,16 +51,24 @@
           }
         ]
     }
+  ],
 
-  ],
-  "comments": [
+  "members": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "email": "newcandidate@gmail.com",
+      "description": "new candidate would be an awesome adition to Nova due to its outstanding experience and good humour",
+      "score": {
+        "involvement": 8,
+        "talent": 10
+      }
+    },
+    {
+      "email": "newcandidate@gmail.com",
+      "description": "new candidate would be an awesome adition to Nova due to its outstanding experience and good humour",
+      "score": {
+        "involvement": 8,
+        "talent": 10
+      }
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

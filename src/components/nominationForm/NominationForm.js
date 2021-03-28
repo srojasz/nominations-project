@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
 import RangeInput from "./inputs/RangeInput";
-import Input from './inputs/TextInput';
+import TextInput from './inputs/TextInput';
 import SubmitInput from "./inputs/SubmitInput";
 
 import "./nominationForm.scss";
 
 import { printErrors } from "../../utils/formLogic";
+import { addNewNomination } from "../../utils/addNewNomination";
+import { INITIAl_DATAFORM_STATE } from '../../utils/constants';
 
-const NominationForm = () => {
+const NominationForm = ({emails}) => {
   const [dataForm, setDataForm] = useState({
     email: "",
     desc: "",
@@ -16,7 +18,7 @@ const NominationForm = () => {
     talent: 5,
   });
 
-  let [error, setErrors] = useState({
+  const [errors, setErrors] = useState({
     email: "",
     desc: "",
   });
@@ -32,38 +34,48 @@ const NominationForm = () => {
     setErrors({});
   };
 
+  console.log(errors)
+
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const errors = printErrors(dataForm);
-    setErrors(errors); 
-
-    // Crear función para comprobar si el email ya ha sido referenciado.
-    // Enviar por POST dataToPost
-    const dataToPost = {
-      email: dataForm.email,
-      description: dataForm.desc,
-      score: {
-        involvement: parseInt(dataForm.involvement),
-        talent: parseInt(dataForm.talent),
-      },
-    };
-  };
+    setErrors(errors);
+    if (!emails.find(email => email === dataForm.email)) {
+        const dataToPost = {
+            email : dataForm.email,
+            description : dataForm.description,
+            score : {
+                involvement : parseInt(dataForm.involvement),
+                talent : parseInt(dataForm.talent)
+            }
+        }
+     
+        // addNewNomination(dataToPost).then(newNomination => {
+        //     console.log(newNomination, 'new Nomination objetc')
+        // })
+        
+    } else {
+        alert("No podemos procesar tu petició porque el email ya ha sido referenciado. Por favor, revisa tu email");
+        // Send email to warn user and referred that emails has alredy been nominated.
+    }   
+  }
+ 
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <Input
+      <TextInput
         element="input"
         dataform={dataForm}
-        error={error.email}
+        error={errors.email}
         onChangeFormData={onChangeFormData}
         name="email"
         placeholder="Email"
         type="text"
       />
-      <Input
+      <TextInput
         element="textarea"
         dataform={dataForm}
-        error={error.desc}
+        error={errors.desc}
         onChangeFormData={onChangeFormData}
         name="desc"
         placeholder="Descripción"
