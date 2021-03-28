@@ -32,6 +32,3 @@ export const printErrors = (dataForm) => {
     }
     return hasErrors;
   };
-  
-
- 
