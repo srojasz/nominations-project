@@ -4,7 +4,6 @@ import {basePath, nominationsPath} from './restResourcesConstants';
 export const fetchNominations = async () => {
     try {
         const {data} = await axios.get(basePath + nominationsPath);
-        console.log(data, 'data')
         return data;
     } catch (err) {
         console.error(err);
