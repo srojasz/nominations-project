@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 
 import RangeInput from "./inputs/RangeInput";
-import Input from './inputs/TextInput';
+import TextInput from './inputs/TextInput';
 import SubmitInput from "./inputs/SubmitInput";
 
 import "./nominationForm.scss";
 
 import { printErrors } from "../../utils/formLogic";
+import { addNewNomination } from "../../utils/addNewNomination";
 
-const NominationForm = () => {
+const NominationForm = ({emails}) => {
   const [dataForm, setDataForm] = useState({
     email: "",
     desc: "",
@@ -16,10 +17,12 @@ const NominationForm = () => {
     talent: 5,
   });
 
-  let [error, setErrors] = useState({
+  const [errors, setErrors] = useState({
     email: "",
     desc: "",
   });
+
+  const [nominationCompleted, setNominationCompleted] = useState(false);
 
   const onChangeFormData = (ev) => {
     const { value } = ev.target;
@@ -30,39 +33,55 @@ const NominationForm = () => {
         }
     );
     setErrors({});
+    setNominationCompleted(false);
   };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const errors = printErrors(dataForm);
-    setErrors(errors); 
+    setErrors(errors);
 
-    //Crear función para comprobar si el email ya ha sido referenciado.
-    const dataToPost = {
-      email: dataForm.email,
-      description: dataForm.desc,
-      score: {
-        involvement: parseInt(dataForm.involvement),
-        talent: parseInt(dataForm.talent),
-      },
-    };
-  };
+    if (errors.email === '' && errors.desc === '') {
+        console.log('no hay errores')
+        if (!emails.find(email => email === dataForm.email)) {
+            const dataToPost = {
+                email : dataForm.email,
+                description : dataForm.description,
+                score : {
+                    involvement : parseInt(dataForm.involvement),
+                    talent : parseInt(dataForm.talent)
+                }
+            }
+     
+        // addNewNomination(dataToPost).then(newNomination => {
+        //     console.log(newNomination, 'new Nomination objetc')
+        // })
+
+        setNominationCompleted(true);        
+        } else {
+            alert("We can't add your nomination, that email has alredy been nominated. Please, check your email!");
+            // Send email to warn user and referred that emails has alredy been nominated.
+        }
+
+    }       
+  }
+ 
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <Input
+      <TextInput
         element="input"
         dataform={dataForm}
-        error={error.email}
+        error={errors.email}
         onChangeFormData={onChangeFormData}
         name="email"
         placeholder="Email"
         type="text"
       />
-      <Input
+      <TextInput
         element="textarea"
         dataform={dataForm}
-        error={error.desc}
+        error={errors.desc}
         onChangeFormData={onChangeFormData}
         name="desc"
         placeholder="Descripción"
@@ -83,6 +102,7 @@ const NominationForm = () => {
         onChangeFormData={onChangeFormData}
       />
       <SubmitInput value="Send"/>
+      {nominationCompleted ? <p className="nomination-completed">Your nomination has been sent!</p> : null}
     </form>
   );
 }

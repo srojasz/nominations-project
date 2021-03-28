@@ -18,17 +18,23 @@ export const emailHasErrors = (email) => {
 };
 
 export const printErrors = (dataForm) => {
+    console.log(dataForm, 'inicial');
     let hasErrors = {
         email : '',
         desc : ''
     };
     if (emailHasErrors(dataForm.email)) {
+        console.log('hay errores de email')
       hasErrors.email = emailHasErrors(dataForm.email);
       return hasErrors;     
     
     } else if (dataForm.desc === "") {
+        console.log('hay errores desc')
       hasErrors.desc = "Please, enter a description!";
        return hasErrors;
     }
     return hasErrors;
   };
+  
+
+ 

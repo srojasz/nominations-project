@@ -1,7 +1,7 @@
 .form {
   width: 30%;
   max-width: 220px;
-  min-height: 400px;
+  height: 100%;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
@@ -25,4 +25,10 @@
   font-size: 12px;
   margin-top: -7px;
   align-self: flex-start;
+}
+
+.nomination-completed {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: white;
 }
