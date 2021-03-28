@@ -6,10 +6,10 @@ import SubmitInput from "./inputs/SubmitInput";
 
 import "./nominationForm.scss";
 
-import { printErrors } from "../../utils/formLogic";
-import { addNewNomination } from "../../utils/addNewNomination";
+import { printErrors } from "../../businessLogic/nominationFormLogic";
+import { addNewNomination } from "../../restClient/addNewNomination";
 
-const NominationForm = ({emails, addNominationToList}) => {
+const NominationForm = ({emails, addNominationsToState, addEmailToState}) => {
   const [dataForm, setDataForm] = useState({
     email: "",
     desc: "",
@@ -33,7 +33,7 @@ const NominationForm = ({emails, addNominationToList}) => {
         }
     );
     setErrors({});
-    setNominationCompleted(false);
+    setNominationCompleted(false); 
   };
 
   const handleSubmit = (ev) => {
@@ -42,7 +42,6 @@ const NominationForm = ({emails, addNominationToList}) => {
     setErrors(errors);
 
     if (errors.email === '' && errors.desc === '') {
-        console.log('no hay errores')
         if (!emails.find(email => email === dataForm.email)) {
             const dataToPost = {
                 email : dataForm.email,
@@ -52,6 +51,9 @@ const NominationForm = ({emails, addNominationToList}) => {
                     talent : parseInt(dataForm.talent)
                 }
             }
+             // addNewNomination(dataToPost).then(newNomination => {
+            //     console.log(newNomination, 'new Nomination objetc')
+            // })
 
             const newNomination = {
                 message: "Request message response",
@@ -71,15 +73,10 @@ const NominationForm = ({emails, addNominationToList}) => {
                   ]
                 };
 
-                addNominationToList(newNomination);
-
-
-     
-        // addNewNomination(dataToPost).then(newNomination => {
-        //     console.log(newNomination, 'new Nomination objetc')
-        // })
-
-        setNominationCompleted(true);        
+                // Update the state.
+                addNominationsToState(newNomination);
+                addEmailToState(dataForm.email);
+                setNominationCompleted(true);        
         } else {
             alert("We can't add your nomination, that email has alredy been nominated. Please, check your email!");
             // Send email to warn user and referred that emails has alredy been nominated.
@@ -87,8 +84,6 @@ const NominationForm = ({emails, addNominationToList}) => {
 
     }       
   }
- 
-
   return (
     <form className="form" onSubmit={handleSubmit}>
       <TextInput

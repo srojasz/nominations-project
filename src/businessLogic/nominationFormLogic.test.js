@@ -1,4 +1,4 @@
-import { emailHasErrors } from "./formLogic";
+import { emailHasErrors } from "./nominationFormLogic";
 
 describe("validate email introduced", () => {
   test("empty field", () => {
@@ -24,7 +24,6 @@ describe("validate email introduced", () => {
 
   test("email valid", () => {
     const email = "test@testing.com";
-
     const expected = false;
 
     expect(emailHasErrors(email)).toEqual(expected);
