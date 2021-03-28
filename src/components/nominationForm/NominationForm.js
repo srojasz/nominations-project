@@ -8,7 +8,6 @@ import "./nominationForm.scss";
 
 import { printErrors } from "../../utils/formLogic";
 import { addNewNomination } from "../../utils/addNewNomination";
-import { INITIAl_DATAFORM_STATE } from '../../utils/constants';
 
 const NominationForm = ({emails}) => {
   const [dataForm, setDataForm] = useState({
