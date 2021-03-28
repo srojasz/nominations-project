@@ -8,7 +8,7 @@ const Dashboard = ({nominations, fieldsDashboard}) => {
    <div className="dashboard">
         <div className="dashboard__header">
             {fieldsDashboard.map((field, key) => {
-                return <p className="dashboard__field" key={key}>{field}</p>
+                return <p className={`dashboard__field ${field.toLowerCase()}`} key={key}>{field}</p>
             })}
          
         </div>

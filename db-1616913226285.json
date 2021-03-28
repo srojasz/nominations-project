@@ -1,0 +1,65 @@
+{
+  "nominations": [
+    {
+      "message": "Request message response",
+      "data": [
+        {
+          "id": "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+          "email": "newcandidate@gmail.com",
+          "description": "newcandidate@gmail.com",
+          "score": {
+            "involvement": 8,
+            "talent": 10
+          },
+          "referrer": "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+          "dateReferred": "2020-08-20T08:40:58.200Z",
+          "status": "PENDING"
+        }
+      ]
+    },
+    {
+      "message": "Request message response",
+      "data": [
+        {
+          "id": "8c8ff55c-11f5-4b3c-8596-3d9831a7usiso9",
+          "email": "secondcandidate@gmail.com",
+          "description": "A great person who work with",
+          "score": {
+            "involvement": 9,
+            "talent": 9
+          },
+          "referrer": "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+          "dateReferred": "2020-08-20T08:40:58.200Z",
+          "status": "PENDING"
+        }
+      ]
+    },
+    {
+      "message": "Request message response",
+      "data": [
+        {
+          "id": "8c8ff55c-11f5-4b3c-8596-3d9831a7usasdaerrd888",
+          "email": "thirdcandidate@gmail.com",
+          "description": "Very proactive",
+          "score": {
+            "involvement": 8,
+            "talent": 7
+          },
+          "referrer": "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+          "dateReferred": "2020-08-20T08:40:58.200Z",
+          "status": "REJECTED"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
