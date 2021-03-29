@@ -4,19 +4,20 @@ import NominationRow from './NominationRow';
 import './dashboard.scss';
 
 const Dashboard = ({nominations, fieldsDashboard}) => {
-   return nominations.length === 0 ? <p>No hay nominaciones que mostrar</p> : 
-   <div className="dashboard">
-        <div className="dashboard__header">
-            {fieldsDashboard.map((field, key) => {
-                return <p className={`dashboard__field ${field.toLowerCase()}`} key={key}>{field}</p>
-            })}
-         
-        </div>
-   {nominations.map(({data, key}) => {
-           return <NominationRow info={data} key={key} />
-       })
-   }
-   </div>
+   return ( 
+       <div className="dashboard">
+            <div className="dashboard__header">
+                {fieldsDashboard.map((field) => {
+                    return <p key={field} className={`dashboard__field ${field.toLowerCase()}`}>{field}</p>
+                })}
+            </div>
+       {nominations.length !== 0 ?
+           nominations.map(({data}, index) => {
+                   return <NominationRow info={data} key={index} />
+           }) : <p className="">There are not nominations to show!</p>
+       }
+       </div>
+   )
 }
 
 export default Dashboard;

@@ -50,6 +50,57 @@
             "status": "REJECTED"
           }
         ]
+    },
+    {
+       "message": "Request message response",
+        "data": [
+          {
+            "id": "9c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+            "email": "mockemail@gmail.com",
+            "description": "Creative and talented person!",
+            "score": {
+              "involvement": 9,
+              "talent": 9
+            },
+            "referrer": "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+            "dateReferred": "2020-08-20T08:40:58.200Z",
+            "status": "PENDING"
+          }
+        ]
+    },
+    {
+       "message": "Request message response",
+        "data": [
+          {
+            "id": "8c8ff54c-11f5-4b3c-8596-3d9831a7usiso9",
+            "email": "another@gmail.com",
+            "description": "A person who is always helping each others!",
+            "score": {
+              "involvement": 9,
+              "talent": 10
+            },
+            "referrer": "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+            "dateReferred": "2020-08-20T08:40:58.200Z",
+            "status": "PENDING"
+          }
+        ]
+    },
+    {
+       "message": "Request message response",
+        "data": [
+          {
+            "id": "8c8ff55c-11f5-4b3c-8596-3d9831a7usasdaerrd888",
+            "email": "thirdnewcandidate@gmail.com",
+            "description": "Very proactive and easygoing",
+            "score": {
+              "involvement": 10,
+              "talent": 7
+            },
+            "referrer": "8c8ff55c-11f5-4b3c-8596-3d9831a8934d",
+            "dateReferred": "2020-08-20T08:40:58.200Z",
+            "status": "REJECTED"
+          }
+        ]
     }
   ],
 
