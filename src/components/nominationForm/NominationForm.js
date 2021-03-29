@@ -22,6 +22,7 @@ const NominationForm = ({emails, addNominationsToState, addEmailToState}) => {
     desc: "",
   });
 
+  
   const [nominationCompleted, setNominationCompleted] = useState(false);
 
   const onChangeFormData = (ev) => {
@@ -45,13 +46,15 @@ const NominationForm = ({emails, addNominationsToState, addEmailToState}) => {
         if (!emails.find(email => email === dataForm.email)) {
             const dataToPost = {
                 email : dataForm.email,
-                description : dataForm.description,
+                description : dataForm.desc,
                 score : {
                     involvement : parseInt(dataForm.involvement),
                     talent : parseInt(dataForm.talent)
                 }
             }
-            // NOT WORKING addNewNomination(dataToPost).then(nominationPost => console.log(nominationPost));
+            addNewNomination(dataToPost).then(newMembers => {
+                 console.log(newMembers, 'new Members')
+            });
 
             const newNomination = {
                 message: "Request message response",
@@ -78,7 +81,6 @@ const NominationForm = ({emails, addNominationsToState, addEmailToState}) => {
         } else {
             alert("We can't add your nomination, that email has alredy been nominated.");
         }
-
     }       
   }
   return (
