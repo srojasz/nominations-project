@@ -15,9 +15,10 @@ My task has been implement the frontend part of the system that allows Nova memb
 ## How to start the project
 
 1. Clone the repository
-2. `npm run server` -> This script executes json server, the tool I have chosen to simulate an API Rest.
-3. `npm run start`
-4. `npm run test`
+2. `npm install`
+3. `npm run server` -> This script executes json server, the tool I have chosen to simulate an API Rest.
+4. `npm run start`
+5. `npm run test`
 
 ## More information
 Some parts of this project have been tested with React Testing Library and Jest.
