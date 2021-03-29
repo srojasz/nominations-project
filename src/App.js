@@ -8,16 +8,20 @@ import './app.scss';
 function App() {
     const [nominationList, setNominationList] = useState([]);
     const [emailsNominated, setEmailsNominated] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => { 
        fetchNominations().then(nominations => {
+            setLoading(true);
             setNominationList(nominations);
+            setLoading(false);
         });
         fetchEmailsNominated().then(emails => {
             setEmailsNominated(emails);
         })         
     }, []);
 
+    // Helpers.
     const addNominationsToState = (newNomination) => setNominationList([...nominationList, newNomination]);
     const addEmailsToState = (newEmail) => setEmailsNominated([...emailsNominated, newEmail]);
 
@@ -26,8 +30,11 @@ function App() {
     return (
         <div className="app-container">
           <NominationForm emails={emailsNominated} addNominationsToState={addNominationsToState} addEmailToState={addEmailsToState}/>
-          <Dashboard nominations={nominationList} fieldsDashboard={fieldsDashboard}/>
-        </div>
+          {loading
+              ? <div data-testid="loading">Loading...</div>
+              : <Dashboard nominations={nominationList} fieldsDashboard={fieldsDashboard}/>
+          }
+          </div>
     );
 }
 
