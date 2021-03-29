@@ -1,8 +1,11 @@
-import { render } from '@testing-library/react';
+import React from 'react';
+import { render, cleanup } from '@testing-library/react';
 
 import Dashboard from './components/dashboard/Dashboard';
 import NominationForm from './components/nominationForm/NominationForm';
 import TextInput from './components/nominationForm/inputs/TextInput';
+
+afterEach(cleanup);
 
 describe("Render components", () => {
   it("renders NominationForm component", () => {
@@ -74,11 +77,4 @@ describe("Render components", () => {
           />
       );
   });
-
 });
-
-  
-
-  
-
-
