@@ -51,9 +51,7 @@ const NominationForm = ({emails, addNominationsToState, addEmailToState}) => {
                     talent : parseInt(dataForm.talent)
                 }
             }
-             // addNewNomination(dataToPost).then(newNomination => {
-            //     console.log(newNomination, 'new Nomination objetc')
-            // })
+            // NOT WORKING addNewNomination(dataToPost).then(nominationPost => console.log(nominationPost));
 
             const newNomination = {
                 message: "Request message response",
@@ -78,8 +76,7 @@ const NominationForm = ({emails, addNominationsToState, addEmailToState}) => {
                 addEmailToState(dataForm.email);
                 setNominationCompleted(true);        
         } else {
-            alert("We can't add your nomination, that email has alredy been nominated. Please, check your email!");
-            // Send email to warn user and referred that emails has alredy been nominated.
+            alert("We can't add your nomination, that email has alredy been nominated.");
         }
 
     }       
