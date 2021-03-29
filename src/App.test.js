@@ -1,7 +1,6 @@
 import React from 'react';
-import { screen, render, cleanup, getByTestId } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 
-import App from './App';
 import Dashboard from './components/dashboard/Dashboard';
 import NominationForm from './components/nominationForm/NominationForm';
 import TextInput from './components/nominationForm/inputs/TextInput';
@@ -9,15 +8,6 @@ import TextInput from './components/nominationForm/inputs/TextInput';
 afterEach(cleanup);
 
 describe("Render components", () => {
-    it("renders App component", () => {
-    render(
-      <App />
-    );
-    const loadingElement = screen.getByTestId('loading');
-    expect(loadingElement).toHaveTextContent('Loading...');
-  });
-
-
   it("renders NominationForm component", () => {
       const emails = ['test@email.com', 'newtest@hotmail.com'];
     render(

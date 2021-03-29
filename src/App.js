@@ -11,13 +11,14 @@ function App() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => { 
+       setLoading(true);
        fetchNominations().then(nominations => {
-            setLoading(true);
             setNominationList(nominations);
             setLoading(false);
         });
         fetchEmailsNominated().then(emails => {
             setEmailsNominated(emails);
+            setLoading(false);
         })         
     }, []);
 
@@ -31,7 +32,7 @@ function App() {
         <div className="app-container">
           <NominationForm emails={emailsNominated} addNominationsToState={addNominationsToState} addEmailToState={addEmailsToState}/>
           {loading
-              ? <div data-testid="loading">Loading...</div>
+              ? <div>Loading...</div>
               : <Dashboard nominations={nominationList} fieldsDashboard={fieldsDashboard}/>
           }
           </div>
